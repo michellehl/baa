@@ -1,0 +1,2093 @@
+Imports System.Convert
+Public Class frmOrderForm
+    Inherits System.Windows.Forms.Form
+
+#Region " Windows Form Designer generated code "
+
+    Public Sub New()
+        MyBase.New()
+
+        'This call is required by the Windows Form Designer.
+        InitializeComponent()
+
+        'Add any initialization after the InitializeComponent() call
+
+    End Sub
+
+    'Form overrides dispose to clean up the component list.
+    Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
+        If disposing Then
+            If Not (components Is Nothing) Then
+                components.Dispose()
+            End If
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
+
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
+
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    Protected WithEvents cboSales As System.Windows.Forms.ComboBox
+    Friend WithEvents daSales As System.Data.OleDb.OleDbDataAdapter
+    Friend WithEvents DsSales As BAA.dsSales
+    Friend WithEvents daOrderID As System.Data.OleDb.OleDbDataAdapter
+    Friend WithEvents lblOrderID As System.Windows.Forms.Label
+    Friend WithEvents OleDbSelectCommand1 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbInsertCommand1 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbUpdateCommand1 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbDeleteCommand1 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents lblRetailStore As System.Windows.Forms.Label
+    Friend WithEvents daGetRetailID As System.Data.OleDb.OleDbDataAdapter
+    Friend WithEvents OleDbSelectCommand3 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbInsertCommand2 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbUpdateCommand2 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbDeleteCommand2 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbSelectCommand2 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents cnBAA As System.Data.OleDb.OleDbConnection
+    Friend WithEvents chkArtist As System.Windows.Forms.CheckBox
+    Protected WithEvents cboArtist As System.Windows.Forms.ComboBox
+    Friend WithEvents daArtist As System.Data.OleDb.OleDbDataAdapter
+    Friend WithEvents OleDbSelectCommand4 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents DsArtist As BAA.dsArtist
+    Friend WithEvents dtdate As System.Windows.Forms.DateTimePicker
+    Friend WithEvents gbOrder As System.Windows.Forms.GroupBox
+    Protected WithEvents cboItem As System.Windows.Forms.ComboBox
+    Friend WithEvents txtItemAmt As System.Windows.Forms.TextBox
+    Friend WithEvents txtAmt As System.Windows.Forms.TextBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents lblItemDescript As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents lblSubtotal As System.Windows.Forms.Label
+    Friend WithEvents lblTax As System.Windows.Forms.Label
+    Friend WithEvents lblTotal As System.Windows.Forms.Label
+    Friend WithEvents lblChange As System.Windows.Forms.Label
+    Friend WithEvents txtAmtGiven As System.Windows.Forms.TextBox
+    Friend WithEvents btnSubtotal As System.Windows.Forms.Button
+    Friend WithEvents btnSend As System.Windows.Forms.Button
+    Friend WithEvents btnOrderComplete As System.Windows.Forms.Button
+    Friend WithEvents btnClear As System.Windows.Forms.Button
+    Friend WithEvents txtReciept As System.Windows.Forms.TextBox
+    Friend WithEvents btn00 As System.Windows.Forms.Button
+    Friend WithEvents btnDecimal As System.Windows.Forms.Button
+    Friend WithEvents btn0 As System.Windows.Forms.Button
+    Friend WithEvents btn3 As System.Windows.Forms.Button
+    Friend WithEvents btn1 As System.Windows.Forms.Button
+    Friend WithEvents btn5 As System.Windows.Forms.Button
+    Friend WithEvents btn4 As System.Windows.Forms.Button
+    Friend WithEvents btn9 As System.Windows.Forms.Button
+    Friend WithEvents btn8 As System.Windows.Forms.Button
+    Friend WithEvents btn7 As System.Windows.Forms.Button
+    Friend WithEvents btn6 As System.Windows.Forms.Button
+    Friend WithEvents btn2 As System.Windows.Forms.Button
+    Friend WithEvents btn300 As System.Windows.Forms.Button
+    Friend WithEvents btn1995 As System.Windows.Forms.Button
+    Friend WithEvents btn2295 As System.Windows.Forms.Button
+    Friend WithEvents btn595 As System.Windows.Forms.Button
+    Friend WithEvents btn2795 As System.Windows.Forms.Button
+    Friend WithEvents btn2495 As System.Windows.Forms.Button
+    Friend WithEvents btn2095 As System.Windows.Forms.Button
+    Friend WithEvents btn1595 As System.Windows.Forms.Button
+    Friend WithEvents btnInvoice As System.Windows.Forms.Button
+    Friend WithEvents btnEnter As System.Windows.Forms.Button
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Protected WithEvents cboItemType As System.Windows.Forms.ComboBox
+    Friend WithEvents daItemType As System.Data.OleDb.OleDbDataAdapter
+    Friend WithEvents OleDbSelectCommand5 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbInsertCommand3 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbUpdateCommand3 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbDeleteCommand3 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents DsItemType As BAA.dsItemType
+    Friend WithEvents lblItemTypeDesc As System.Windows.Forms.Label
+    Friend WithEvents daItem As System.Data.OleDb.OleDbDataAdapter
+    Friend WithEvents DsItem As BAA.dsItem
+    Friend WithEvents daInsertOrder As System.Data.OleDb.OleDbDataAdapter
+    Friend WithEvents daInsertTransaction As System.Data.OleDb.OleDbDataAdapter
+    Friend WithEvents txtnotes As System.Windows.Forms.TextBox
+    Friend WithEvents btnArtOnly As System.Windows.Forms.Button
+    Friend WithEvents dgTransactions As System.Windows.Forms.DataGrid
+    Friend WithEvents daTransactions As System.Data.OleDb.OleDbDataAdapter
+    Friend WithEvents DsTransactions As BAA.dsTransactions
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents daTotals As System.Data.OleDb.OleDbDataAdapter
+    Friend WithEvents daTax As System.Data.OleDb.OleDbDataAdapter
+    Friend WithEvents OleDbSelectCommand11 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbInsertCommand8 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbUpdateCommand7 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbDeleteCommand7 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents OleDbSelectCommand10 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbSelectCommand8 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbInsertCommand6 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbSelectCommand9 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbInsertCommand7 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbSelectCommand7 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbInsertCommand5 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbUpdateCommand5 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbDeleteCommand5 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbCommand1 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents lblCount As System.Windows.Forms.Label
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents OleDbSelectCommand6 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbInsertCommand4 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbUpdateCommand4 As System.Data.OleDb.OleDbCommand
+    Friend WithEvents OleDbDeleteCommand4 As System.Data.OleDb.OleDbCommand
+    <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
+        Me.cboSales = New System.Windows.Forms.ComboBox
+        Me.DsSales = New BAA.dsSales
+        Me.daSales = New System.Data.OleDb.OleDbDataAdapter
+        Me.OleDbDeleteCommand1 = New System.Data.OleDb.OleDbCommand
+        Me.cnBAA = New System.Data.OleDb.OleDbConnection
+        Me.OleDbInsertCommand1 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbSelectCommand1 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbUpdateCommand1 = New System.Data.OleDb.OleDbCommand
+        Me.lblOrderID = New System.Windows.Forms.Label
+        Me.daOrderID = New System.Data.OleDb.OleDbDataAdapter
+        Me.OleDbSelectCommand2 = New System.Data.OleDb.OleDbCommand
+        Me.lblRetailStore = New System.Windows.Forms.Label
+        Me.daGetRetailID = New System.Data.OleDb.OleDbDataAdapter
+        Me.OleDbDeleteCommand2 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbInsertCommand2 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbSelectCommand3 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbUpdateCommand2 = New System.Data.OleDb.OleDbCommand
+        Me.cboArtist = New System.Windows.Forms.ComboBox
+        Me.DsArtist = New BAA.dsArtist
+        Me.chkArtist = New System.Windows.Forms.CheckBox
+        Me.daArtist = New System.Data.OleDb.OleDbDataAdapter
+        Me.OleDbSelectCommand4 = New System.Data.OleDb.OleDbCommand
+        Me.dtdate = New System.Windows.Forms.DateTimePicker
+        Me.gbOrder = New System.Windows.Forms.GroupBox
+        Me.Label12 = New System.Windows.Forms.Label
+        Me.lblCount = New System.Windows.Forms.Label
+        Me.DsItem = New BAA.dsItem
+        Me.Label10 = New System.Windows.Forms.Label
+        Me.btnArtOnly = New System.Windows.Forms.Button
+        Me.txtnotes = New System.Windows.Forms.TextBox
+        Me.lblItemTypeDesc = New System.Windows.Forms.Label
+        Me.DsItemType = New BAA.dsItemType
+        Me.Label3 = New System.Windows.Forms.Label
+        Me.cboItemType = New System.Windows.Forms.ComboBox
+        Me.btnEnter = New System.Windows.Forms.Button
+        Me.btnInvoice = New System.Windows.Forms.Button
+        Me.btn300 = New System.Windows.Forms.Button
+        Me.btn1995 = New System.Windows.Forms.Button
+        Me.btn2295 = New System.Windows.Forms.Button
+        Me.btn595 = New System.Windows.Forms.Button
+        Me.btn2795 = New System.Windows.Forms.Button
+        Me.btn2495 = New System.Windows.Forms.Button
+        Me.btn2095 = New System.Windows.Forms.Button
+        Me.btn1595 = New System.Windows.Forms.Button
+        Me.btn00 = New System.Windows.Forms.Button
+        Me.btnDecimal = New System.Windows.Forms.Button
+        Me.btn0 = New System.Windows.Forms.Button
+        Me.btn3 = New System.Windows.Forms.Button
+        Me.btn1 = New System.Windows.Forms.Button
+        Me.btn5 = New System.Windows.Forms.Button
+        Me.btn4 = New System.Windows.Forms.Button
+        Me.btn9 = New System.Windows.Forms.Button
+        Me.btn8 = New System.Windows.Forms.Button
+        Me.btn7 = New System.Windows.Forms.Button
+        Me.btn6 = New System.Windows.Forms.Button
+        Me.btn2 = New System.Windows.Forms.Button
+        Me.txtReciept = New System.Windows.Forms.TextBox
+        Me.btnClear = New System.Windows.Forms.Button
+        Me.btnSend = New System.Windows.Forms.Button
+        Me.dgTransactions = New System.Windows.Forms.DataGrid
+        Me.DsTransactions = New BAA.dsTransactions
+        Me.lblItemDescript = New System.Windows.Forms.Label
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.Label1 = New System.Windows.Forms.Label
+        Me.txtAmt = New System.Windows.Forms.TextBox
+        Me.txtItemAmt = New System.Windows.Forms.TextBox
+        Me.cboItem = New System.Windows.Forms.ComboBox
+        Me.Label4 = New System.Windows.Forms.Label
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.lblSubtotal = New System.Windows.Forms.Label
+        Me.lblTax = New System.Windows.Forms.Label
+        Me.lblTotal = New System.Windows.Forms.Label
+        Me.lblChange = New System.Windows.Forms.Label
+        Me.txtAmtGiven = New System.Windows.Forms.TextBox
+        Me.btnSubtotal = New System.Windows.Forms.Button
+        Me.btnOrderComplete = New System.Windows.Forms.Button
+        Me.daItemType = New System.Data.OleDb.OleDbDataAdapter
+        Me.OleDbDeleteCommand3 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbInsertCommand3 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbSelectCommand5 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbUpdateCommand3 = New System.Data.OleDb.OleDbCommand
+        Me.daItem = New System.Data.OleDb.OleDbDataAdapter
+        Me.OleDbDeleteCommand4 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbInsertCommand4 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbSelectCommand6 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbUpdateCommand4 = New System.Data.OleDb.OleDbCommand
+        Me.daInsertOrder = New System.Data.OleDb.OleDbDataAdapter
+        Me.OleDbDeleteCommand5 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbInsertCommand5 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbSelectCommand7 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbUpdateCommand5 = New System.Data.OleDb.OleDbCommand
+        Me.daInsertTransaction = New System.Data.OleDb.OleDbDataAdapter
+        Me.OleDbInsertCommand6 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbSelectCommand8 = New System.Data.OleDb.OleDbCommand
+        Me.daTransactions = New System.Data.OleDb.OleDbDataAdapter
+        Me.OleDbInsertCommand7 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbSelectCommand9 = New System.Data.OleDb.OleDbCommand
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.daTotals = New System.Data.OleDb.OleDbDataAdapter
+        Me.OleDbSelectCommand10 = New System.Data.OleDb.OleDbCommand
+        Me.daTax = New System.Data.OleDb.OleDbDataAdapter
+        Me.OleDbDeleteCommand7 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbInsertCommand8 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbSelectCommand11 = New System.Data.OleDb.OleDbCommand
+        Me.OleDbUpdateCommand7 = New System.Data.OleDb.OleDbCommand
+        Me.Label11 = New System.Windows.Forms.Label
+        Me.OleDbCommand1 = New System.Data.OleDb.OleDbCommand
+        CType(Me.DsSales, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsArtist, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gbOrder.SuspendLayout()
+        CType(Me.DsItem, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsItemType, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgTransactions, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsTransactions, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'cboSales
+        '
+        Me.cboSales.DataSource = Me.DsSales
+        Me.cboSales.DisplayMember = "TBLEMP.EMPFIRST"
+        Me.cboSales.Location = New System.Drawing.Point(259, 74)
+        Me.cboSales.Name = "cboSales"
+        Me.cboSales.Size = New System.Drawing.Size(163, 24)
+        Me.cboSales.TabIndex = 0
+        Me.cboSales.TabStop = False
+        '
+        'DsSales
+        '
+        Me.DsSales.DataSetName = "dsSales"
+        Me.DsSales.Locale = New System.Globalization.CultureInfo("en-US")
+        '
+        'daSales
+        '
+        Me.daSales.DeleteCommand = Me.OleDbDeleteCommand1
+        Me.daSales.InsertCommand = Me.OleDbInsertCommand1
+        Me.daSales.SelectCommand = Me.OleDbSelectCommand1
+        Me.daSales.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "TBLEMP", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("EMPFIRST", "EMPFIRST"), New System.Data.Common.DataColumnMapping("EMPID", "EMPID")})})
+        Me.daSales.UpdateCommand = Me.OleDbUpdateCommand1
+        '
+        'OleDbDeleteCommand1
+        '
+        Me.OleDbDeleteCommand1.CommandText = "DELETE FROM TBLEMP WHERE (EMPID = ?) AND (EMPFIRST = ? OR ? IS NULL AND EMPFIRST " & _
+        "IS NULL)"
+        Me.OleDbDeleteCommand1.Connection = Me.cnBAA
+        Me.OleDbDeleteCommand1.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_EMPID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "EMPID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand1.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_EMPFIRST", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "EMPFIRST", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand1.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_EMPFIRST1", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "EMPFIRST", System.Data.DataRowVersion.Original, Nothing))
+        '
+        'cnBAA
+        '
+        Me.cnBAA.ConnectionString = "Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Registry Path=;Jet OLEDB:Database L" & _
+        "ocking Mode=1;Jet OLEDB:Database Password=;Data Source=""C:\BAA.mdb"";Password=;Je" & _
+        "t OLEDB:Engine Type=5;Jet OLEDB:Global Bulk Transactions=1;Provider=""Microsoft.J" & _
+        "et.OLEDB.4.0"";Jet OLEDB:System database=;Jet OLEDB:SFP=False;Extended Properties" & _
+        "=;Mode=Share Deny None;Jet OLEDB:New Database Password=;Jet OLEDB:Create System " & _
+        "Database=False;Jet OLEDB:Don't Copy Locale on Compact=False;Jet OLEDB:Compact Wi" & _
+        "thout Replica Repair=False;User ID=Admin;Jet OLEDB:Encrypt Database=False"
+        '
+        'OleDbInsertCommand1
+        '
+        Me.OleDbInsertCommand1.CommandText = "INSERT INTO TBLEMP(EMPFIRST, EMPID) VALUES (?, ?)"
+        Me.OleDbInsertCommand1.Connection = Me.cnBAA
+        Me.OleDbInsertCommand1.Parameters.Add(New System.Data.OleDb.OleDbParameter("EMPFIRST", System.Data.OleDb.OleDbType.VarWChar, 50, "EMPFIRST"))
+        Me.OleDbInsertCommand1.Parameters.Add(New System.Data.OleDb.OleDbParameter("EMPID", System.Data.OleDb.OleDbType.Integer, 0, "EMPID"))
+        '
+        'OleDbSelectCommand1
+        '
+        Me.OleDbSelectCommand1.CommandText = "SELECT EMPFIRST, EMPID FROM TBLEMP WHERE (JOBDESC = 'sales') AND (STATUS = 'A') O" & _
+        "RDER BY EMPFIRST"
+        Me.OleDbSelectCommand1.Connection = Me.cnBAA
+        '
+        'OleDbUpdateCommand1
+        '
+        Me.OleDbUpdateCommand1.CommandText = "UPDATE TBLEMP SET EMPFIRST = ?, EMPID = ? WHERE (EMPID = ?) AND (EMPFIRST = ? OR " & _
+        "? IS NULL AND EMPFIRST IS NULL)"
+        Me.OleDbUpdateCommand1.Connection = Me.cnBAA
+        Me.OleDbUpdateCommand1.Parameters.Add(New System.Data.OleDb.OleDbParameter("EMPFIRST", System.Data.OleDb.OleDbType.VarWChar, 50, "EMPFIRST"))
+        Me.OleDbUpdateCommand1.Parameters.Add(New System.Data.OleDb.OleDbParameter("EMPID", System.Data.OleDb.OleDbType.Integer, 0, "EMPID"))
+        Me.OleDbUpdateCommand1.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_EMPID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "EMPID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand1.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_EMPFIRST", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "EMPFIRST", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand1.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_EMPFIRST1", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "EMPFIRST", System.Data.DataRowVersion.Original, Nothing))
+        '
+        'lblOrderID
+        '
+        Me.lblOrderID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblOrderID.Location = New System.Drawing.Point(19, 74)
+        Me.lblOrderID.Name = "lblOrderID"
+        Me.lblOrderID.Size = New System.Drawing.Size(173, 26)
+        Me.lblOrderID.TabIndex = 1
+        Me.lblOrderID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'daOrderID
+        '
+        Me.daOrderID.SelectCommand = Me.OleDbSelectCommand2
+        Me.daOrderID.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "Table", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("lastID", "lastID")})})
+        '
+        'OleDbSelectCommand2
+        '
+        Me.OleDbSelectCommand2.CommandText = "SELECT MAX(ORDERID) AS lastID FROM TBLORDER WHERE (STOREID = ?)"
+        Me.OleDbSelectCommand2.Connection = Me.cnBAA
+        Me.OleDbSelectCommand2.Parameters.Add(New System.Data.OleDb.OleDbParameter("STOREID", System.Data.OleDb.OleDbType.Integer, 0, "STOREID"))
+        '
+        'lblRetailStore
+        '
+        Me.lblRetailStore.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblRetailStore.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRetailStore.Location = New System.Drawing.Point(19, 9)
+        Me.lblRetailStore.Name = "lblRetailStore"
+        Me.lblRetailStore.Size = New System.Drawing.Size(1152, 27)
+        Me.lblRetailStore.TabIndex = 2
+        Me.lblRetailStore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'daGetRetailID
+        '
+        Me.daGetRetailID.DeleteCommand = Me.OleDbDeleteCommand2
+        Me.daGetRetailID.InsertCommand = Me.OleDbInsertCommand2
+        Me.daGetRetailID.SelectCommand = Me.OleDbSelectCommand3
+        Me.daGetRetailID.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "TBLRETAIL", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("RETAILID", "RETAILID")})})
+        Me.daGetRetailID.UpdateCommand = Me.OleDbUpdateCommand2
+        '
+        'OleDbDeleteCommand2
+        '
+        Me.OleDbDeleteCommand2.CommandText = "DELETE FROM TBLRETAIL WHERE (RETAILID = ?)"
+        Me.OleDbDeleteCommand2.Connection = Me.cnBAA
+        Me.OleDbDeleteCommand2.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_RETAILID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "RETAILID", System.Data.DataRowVersion.Original, Nothing))
+        '
+        'OleDbInsertCommand2
+        '
+        Me.OleDbInsertCommand2.CommandText = "INSERT INTO TBLRETAIL(RETAILID) VALUES (?)"
+        Me.OleDbInsertCommand2.Connection = Me.cnBAA
+        Me.OleDbInsertCommand2.Parameters.Add(New System.Data.OleDb.OleDbParameter("RETAILID", System.Data.OleDb.OleDbType.Integer, 0, "RETAILID"))
+        '
+        'OleDbSelectCommand3
+        '
+        Me.OleDbSelectCommand3.CommandText = "SELECT RETAILID FROM TBLRETAIL WHERE (RETAILNAME = ?)"
+        Me.OleDbSelectCommand3.Connection = Me.cnBAA
+        Me.OleDbSelectCommand3.Parameters.Add(New System.Data.OleDb.OleDbParameter("RETAILNAME", System.Data.OleDb.OleDbType.VarWChar, 50, "RETAILNAME"))
+        '
+        'OleDbUpdateCommand2
+        '
+        Me.OleDbUpdateCommand2.CommandText = "UPDATE TBLRETAIL SET RETAILID = ? WHERE (RETAILID = ?)"
+        Me.OleDbUpdateCommand2.Connection = Me.cnBAA
+        Me.OleDbUpdateCommand2.Parameters.Add(New System.Data.OleDb.OleDbParameter("RETAILID", System.Data.OleDb.OleDbType.Integer, 0, "RETAILID"))
+        Me.OleDbUpdateCommand2.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_RETAILID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "RETAILID", System.Data.DataRowVersion.Original, Nothing))
+        '
+        'cboArtist
+        '
+        Me.cboArtist.DataSource = Me.DsArtist
+        Me.cboArtist.DisplayMember = "TBLEMP.EMPFIRST"
+        Me.cboArtist.Location = New System.Drawing.Point(682, 74)
+        Me.cboArtist.Name = "cboArtist"
+        Me.cboArtist.Size = New System.Drawing.Size(163, 24)
+        Me.cboArtist.TabIndex = 3
+        Me.cboArtist.TabStop = False
+        Me.cboArtist.Visible = False
+        '
+        'DsArtist
+        '
+        Me.DsArtist.DataSetName = "dsArtist"
+        Me.DsArtist.Locale = New System.Globalization.CultureInfo("en-US")
+        '
+        'chkArtist
+        '
+        Me.chkArtist.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkArtist.Location = New System.Drawing.Point(528, 74)
+        Me.chkArtist.Name = "chkArtist"
+        Me.chkArtist.Size = New System.Drawing.Size(144, 28)
+        Me.chkArtist.TabIndex = 4
+        Me.chkArtist.TabStop = False
+        Me.chkArtist.Text = "Choose Artist"
+        Me.chkArtist.Visible = False
+        '
+        'daArtist
+        '
+        Me.daArtist.SelectCommand = Me.OleDbSelectCommand4
+        Me.daArtist.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "TBLEMP", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("EMPFIRST", "EMPFIRST")})})
+        '
+        'OleDbSelectCommand4
+        '
+        Me.OleDbSelectCommand4.CommandText = "SELECT EMPFIRST FROM TBLEMP WHERE (JOBDESC = 'Artist')"
+        Me.OleDbSelectCommand4.Connection = Me.cnBAA
+        '
+        'dtdate
+        '
+        Me.dtdate.Format = System.Windows.Forms.DateTimePickerFormat.Short
+        Me.dtdate.Location = New System.Drawing.Point(970, 74)
+        Me.dtdate.Name = "dtdate"
+        Me.dtdate.Size = New System.Drawing.Size(115, 22)
+        Me.dtdate.TabIndex = 5
+        Me.dtdate.TabStop = False
+        '
+        'gbOrder
+        '
+        Me.gbOrder.Controls.Add(Me.Label12)
+        Me.gbOrder.Controls.Add(Me.lblCount)
+        Me.gbOrder.Controls.Add(Me.Label10)
+        Me.gbOrder.Controls.Add(Me.btnArtOnly)
+        Me.gbOrder.Controls.Add(Me.txtnotes)
+        Me.gbOrder.Controls.Add(Me.lblItemTypeDesc)
+        Me.gbOrder.Controls.Add(Me.Label3)
+        Me.gbOrder.Controls.Add(Me.cboItemType)
+        Me.gbOrder.Controls.Add(Me.btnEnter)
+        Me.gbOrder.Controls.Add(Me.btnInvoice)
+        Me.gbOrder.Controls.Add(Me.btn300)
+        Me.gbOrder.Controls.Add(Me.btn1995)
+        Me.gbOrder.Controls.Add(Me.btn2295)
+        Me.gbOrder.Controls.Add(Me.btn595)
+        Me.gbOrder.Controls.Add(Me.btn2795)
+        Me.gbOrder.Controls.Add(Me.btn2495)
+        Me.gbOrder.Controls.Add(Me.btn2095)
+        Me.gbOrder.Controls.Add(Me.btn1595)
+        Me.gbOrder.Controls.Add(Me.btn00)
+        Me.gbOrder.Controls.Add(Me.btnDecimal)
+        Me.gbOrder.Controls.Add(Me.btn0)
+        Me.gbOrder.Controls.Add(Me.btn3)
+        Me.gbOrder.Controls.Add(Me.btn1)
+        Me.gbOrder.Controls.Add(Me.btn5)
+        Me.gbOrder.Controls.Add(Me.btn4)
+        Me.gbOrder.Controls.Add(Me.btn9)
+        Me.gbOrder.Controls.Add(Me.btn8)
+        Me.gbOrder.Controls.Add(Me.btn7)
+        Me.gbOrder.Controls.Add(Me.btn6)
+        Me.gbOrder.Controls.Add(Me.btn2)
+        Me.gbOrder.Controls.Add(Me.txtReciept)
+        Me.gbOrder.Controls.Add(Me.btnClear)
+        Me.gbOrder.Controls.Add(Me.btnSend)
+        Me.gbOrder.Controls.Add(Me.dgTransactions)
+        Me.gbOrder.Controls.Add(Me.lblItemDescript)
+        Me.gbOrder.Controls.Add(Me.Label2)
+        Me.gbOrder.Controls.Add(Me.Label1)
+        Me.gbOrder.Controls.Add(Me.txtAmt)
+        Me.gbOrder.Controls.Add(Me.txtItemAmt)
+        Me.gbOrder.Controls.Add(Me.cboItem)
+        Me.gbOrder.Location = New System.Drawing.Point(19, 111)
+        Me.gbOrder.Name = "gbOrder"
+        Me.gbOrder.Size = New System.Drawing.Size(1152, 452)
+        Me.gbOrder.TabIndex = 6
+        Me.gbOrder.TabStop = False
+        Me.gbOrder.Text = "Order Form"
+        '
+        'Label12
+        '
+        Me.Label12.Location = New System.Drawing.Point(317, 120)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(163, 27)
+        Me.Label12.TabIndex = 127
+        Me.Label12.Text = "Inventory Count of Item:"
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblCount
+        '
+        Me.lblCount.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsItem, "TBLITEM.ITEMCOUNT"))
+        Me.lblCount.Location = New System.Drawing.Point(326, 148)
+        Me.lblCount.Name = "lblCount"
+        Me.lblCount.Size = New System.Drawing.Size(120, 26)
+        Me.lblCount.TabIndex = 126
+        '
+        'DsItem
+        '
+        Me.DsItem.DataSetName = "dsItem"
+        Me.DsItem.Locale = New System.Globalization.CultureInfo("en-US")
+        '
+        'Label10
+        '
+        Me.Label10.Location = New System.Drawing.Point(154, 92)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(67, 27)
+        Me.Label10.TabIndex = 125
+        Me.Label10.Text = "Type ID:"
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'btnArtOnly
+        '
+        Me.btnArtOnly.Location = New System.Drawing.Point(10, 28)
+        Me.btnArtOnly.Name = "btnArtOnly"
+        Me.btnArtOnly.Size = New System.Drawing.Size(124, 26)
+        Me.btnArtOnly.TabIndex = 124
+        Me.btnArtOnly.TabStop = False
+        Me.btnArtOnly.Text = "Art Only"
+        '
+        'txtnotes
+        '
+        Me.txtnotes.Location = New System.Drawing.Point(10, 55)
+        Me.txtnotes.Name = "txtnotes"
+        Me.txtnotes.Size = New System.Drawing.Size(124, 22)
+        Me.txtnotes.TabIndex = 123
+        Me.txtnotes.TabStop = False
+        Me.txtnotes.Text = ""
+        '
+        'lblItemTypeDesc
+        '
+        Me.lblItemTypeDesc.DataBindings.Add(New System.Windows.Forms.Binding("Tag", Me.DsItemType, "TBLITEMTYPE.ITEMTYPEDESC"))
+        Me.lblItemTypeDesc.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsItemType, "TBLITEMTYPE.ITEMTYPEDESC"))
+        Me.lblItemTypeDesc.Location = New System.Drawing.Point(221, 92)
+        Me.lblItemTypeDesc.Name = "lblItemTypeDesc"
+        Me.lblItemTypeDesc.Size = New System.Drawing.Size(77, 27)
+        Me.lblItemTypeDesc.TabIndex = 122
+        Me.lblItemTypeDesc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'DsItemType
+        '
+        Me.DsItemType.DataSetName = "dsItemType"
+        Me.DsItemType.Locale = New System.Globalization.CultureInfo("en-US")
+        '
+        'Label3
+        '
+        Me.Label3.Location = New System.Drawing.Point(154, 28)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(120, 26)
+        Me.Label3.TabIndex = 121
+        Me.Label3.Text = "Item Type:"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'cboItemType
+        '
+        Me.cboItemType.DataSource = Me.DsItemType
+        Me.cboItemType.DisplayMember = "TBLITEMTYPE.ITEMTYPEID"
+        Me.cboItemType.Location = New System.Drawing.Point(155, 54)
+        Me.cboItemType.Name = "cboItemType"
+        Me.cboItemType.Size = New System.Drawing.Size(145, 24)
+        Me.cboItemType.TabIndex = 0
+        '
+        'btnEnter
+        '
+        Me.btnEnter.Location = New System.Drawing.Point(641, 28)
+        Me.btnEnter.Name = "btnEnter"
+        Me.btnEnter.Size = New System.Drawing.Size(125, 26)
+        Me.btnEnter.TabIndex = 119
+        Me.btnEnter.TabStop = False
+        Me.btnEnter.Text = "Price"
+        '
+        'btnInvoice
+        '
+        Me.btnInvoice.Location = New System.Drawing.Point(787, 28)
+        Me.btnInvoice.Name = "btnInvoice"
+        Me.btnInvoice.Size = New System.Drawing.Size(125, 26)
+        Me.btnInvoice.TabIndex = 118
+        Me.btnInvoice.TabStop = False
+        Me.btnInvoice.Text = "Receipt"
+        '
+        'btn300
+        '
+        Me.btn300.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn300.Location = New System.Drawing.Point(1018, 295)
+        Me.btn300.Name = "btn300"
+        Me.btn300.Size = New System.Drawing.Size(96, 27)
+        Me.btn300.TabIndex = 117
+        Me.btn300.TabStop = False
+        Me.btn300.Text = "3.00"
+        '
+        'btn1995
+        '
+        Me.btn1995.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn1995.Location = New System.Drawing.Point(1018, 332)
+        Me.btn1995.Name = "btn1995"
+        Me.btn1995.Size = New System.Drawing.Size(96, 27)
+        Me.btn1995.TabIndex = 116
+        Me.btn1995.TabStop = False
+        Me.btn1995.Text = "19.95"
+        '
+        'btn2295
+        '
+        Me.btn2295.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn2295.Location = New System.Drawing.Point(1018, 369)
+        Me.btn2295.Name = "btn2295"
+        Me.btn2295.Size = New System.Drawing.Size(96, 27)
+        Me.btn2295.TabIndex = 115
+        Me.btn2295.TabStop = False
+        Me.btn2295.Text = "22.95"
+        '
+        'btn595
+        '
+        Me.btn595.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn595.Location = New System.Drawing.Point(902, 295)
+        Me.btn595.Name = "btn595"
+        Me.btn595.Size = New System.Drawing.Size(96, 27)
+        Me.btn595.TabIndex = 114
+        Me.btn595.TabStop = False
+        Me.btn595.Text = "5.95"
+        '
+        'btn2795
+        '
+        Me.btn2795.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn2795.Location = New System.Drawing.Point(1018, 406)
+        Me.btn2795.Name = "btn2795"
+        Me.btn2795.Size = New System.Drawing.Size(96, 27)
+        Me.btn2795.TabIndex = 113
+        Me.btn2795.TabStop = False
+        Me.btn2795.Text = "27.95"
+        '
+        'btn2495
+        '
+        Me.btn2495.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn2495.Location = New System.Drawing.Point(902, 406)
+        Me.btn2495.Name = "btn2495"
+        Me.btn2495.Size = New System.Drawing.Size(96, 27)
+        Me.btn2495.TabIndex = 112
+        Me.btn2495.TabStop = False
+        Me.btn2495.Text = "24.95"
+        '
+        'btn2095
+        '
+        Me.btn2095.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn2095.Location = New System.Drawing.Point(902, 369)
+        Me.btn2095.Name = "btn2095"
+        Me.btn2095.Size = New System.Drawing.Size(96, 27)
+        Me.btn2095.TabIndex = 111
+        Me.btn2095.TabStop = False
+        Me.btn2095.Text = "20.95"
+        '
+        'btn1595
+        '
+        Me.btn1595.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn1595.Location = New System.Drawing.Point(902, 332)
+        Me.btn1595.Name = "btn1595"
+        Me.btn1595.Size = New System.Drawing.Size(96, 27)
+        Me.btn1595.TabIndex = 110
+        Me.btn1595.TabStop = False
+        Me.btn1595.Text = "15.95"
+        '
+        'btn00
+        '
+        Me.btn00.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn00.Location = New System.Drawing.Point(998, 249)
+        Me.btn00.Name = "btn00"
+        Me.btn00.Size = New System.Drawing.Size(39, 37)
+        Me.btn00.TabIndex = 109
+        Me.btn00.TabStop = False
+        Me.btn00.Text = "00"
+        '
+        'btnDecimal
+        '
+        Me.btnDecimal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDecimal.Location = New System.Drawing.Point(1046, 249)
+        Me.btnDecimal.Name = "btnDecimal"
+        Me.btnDecimal.Size = New System.Drawing.Size(39, 37)
+        Me.btnDecimal.TabIndex = 108
+        Me.btnDecimal.TabStop = False
+        Me.btnDecimal.Text = "."
+        '
+        'btn0
+        '
+        Me.btn0.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn0.Location = New System.Drawing.Point(950, 249)
+        Me.btn0.Name = "btn0"
+        Me.btn0.Size = New System.Drawing.Size(39, 37)
+        Me.btn0.TabIndex = 107
+        Me.btn0.TabStop = False
+        Me.btn0.Text = "0"
+        '
+        'btn3
+        '
+        Me.btn3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn3.Location = New System.Drawing.Point(1046, 203)
+        Me.btn3.Name = "btn3"
+        Me.btn3.Size = New System.Drawing.Size(39, 37)
+        Me.btn3.TabIndex = 106
+        Me.btn3.TabStop = False
+        Me.btn3.Text = "3"
+        '
+        'btn1
+        '
+        Me.btn1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn1.Location = New System.Drawing.Point(950, 203)
+        Me.btn1.Name = "btn1"
+        Me.btn1.Size = New System.Drawing.Size(39, 37)
+        Me.btn1.TabIndex = 105
+        Me.btn1.TabStop = False
+        Me.btn1.Text = "1"
+        '
+        'btn5
+        '
+        Me.btn5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn5.Location = New System.Drawing.Point(998, 157)
+        Me.btn5.Name = "btn5"
+        Me.btn5.Size = New System.Drawing.Size(39, 37)
+        Me.btn5.TabIndex = 104
+        Me.btn5.TabStop = False
+        Me.btn5.Text = "5"
+        '
+        'btn4
+        '
+        Me.btn4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn4.Location = New System.Drawing.Point(950, 157)
+        Me.btn4.Name = "btn4"
+        Me.btn4.Size = New System.Drawing.Size(39, 37)
+        Me.btn4.TabIndex = 103
+        Me.btn4.TabStop = False
+        Me.btn4.Text = "4"
+        '
+        'btn9
+        '
+        Me.btn9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn9.Location = New System.Drawing.Point(1046, 111)
+        Me.btn9.Name = "btn9"
+        Me.btn9.Size = New System.Drawing.Size(39, 37)
+        Me.btn9.TabIndex = 102
+        Me.btn9.TabStop = False
+        Me.btn9.Text = "9"
+        '
+        'btn8
+        '
+        Me.btn8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn8.Location = New System.Drawing.Point(998, 111)
+        Me.btn8.Name = "btn8"
+        Me.btn8.Size = New System.Drawing.Size(39, 37)
+        Me.btn8.TabIndex = 99
+        Me.btn8.TabStop = False
+        Me.btn8.Text = "8"
+        '
+        'btn7
+        '
+        Me.btn7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn7.Location = New System.Drawing.Point(950, 111)
+        Me.btn7.Name = "btn7"
+        Me.btn7.Size = New System.Drawing.Size(39, 37)
+        Me.btn7.TabIndex = 98
+        Me.btn7.TabStop = False
+        Me.btn7.Text = "7"
+        '
+        'btn6
+        '
+        Me.btn6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn6.Location = New System.Drawing.Point(1046, 157)
+        Me.btn6.Name = "btn6"
+        Me.btn6.Size = New System.Drawing.Size(39, 37)
+        Me.btn6.TabIndex = 100
+        Me.btn6.TabStop = False
+        Me.btn6.Text = "6"
+        '
+        'btn2
+        '
+        Me.btn2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn2.Location = New System.Drawing.Point(998, 203)
+        Me.btn2.Name = "btn2"
+        Me.btn2.Size = New System.Drawing.Size(39, 37)
+        Me.btn2.TabIndex = 101
+        Me.btn2.TabStop = False
+        Me.btn2.Text = "2"
+        '
+        'txtReciept
+        '
+        Me.txtReciept.Location = New System.Drawing.Point(786, 55)
+        Me.txtReciept.Name = "txtReciept"
+        Me.txtReciept.Size = New System.Drawing.Size(125, 22)
+        Me.txtReciept.TabIndex = 3
+        Me.txtReciept.Text = ""
+        '
+        'btnClear
+        '
+        Me.btnClear.Location = New System.Drawing.Point(950, 65)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(125, 26)
+        Me.btnClear.TabIndex = 17
+        Me.btnClear.TabStop = False
+        Me.btnClear.Text = "Clear Order"
+        '
+        'btnSend
+        '
+        Me.btnSend.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnSend.Location = New System.Drawing.Point(950, 28)
+        Me.btnSend.Name = "btnSend"
+        Me.btnSend.Size = New System.Drawing.Size(125, 26)
+        Me.btnSend.TabIndex = 4
+        Me.btnSend.Text = "Send"
+        '
+        'dgTransactions
+        '
+        Me.dgTransactions.CaptionText = "Items Ordered"
+        Me.dgTransactions.DataMember = "TBLTRAN"
+        Me.dgTransactions.DataSource = Me.DsTransactions
+        Me.dgTransactions.HeaderForeColor = System.Drawing.SystemColors.ControlText
+        Me.dgTransactions.Location = New System.Drawing.Point(19, 194)
+        Me.dgTransactions.Name = "dgTransactions"
+        Me.dgTransactions.Size = New System.Drawing.Size(864, 240)
+        Me.dgTransactions.TabIndex = 8
+        Me.dgTransactions.TabStop = False
+        '
+        'DsTransactions
+        '
+        Me.DsTransactions.DataSetName = "dsTransactions"
+        Me.DsTransactions.Locale = New System.Globalization.CultureInfo("en-US")
+        '
+        'lblItemDescript
+        '
+        Me.lblItemDescript.DataBindings.Add(New System.Windows.Forms.Binding("Tag", Me.DsItem, "TBLITEM.ITEMDESC"))
+        Me.lblItemDescript.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsItem, "TBLITEM.ITEMDESC"))
+        Me.lblItemDescript.Location = New System.Drawing.Point(326, 92)
+        Me.lblItemDescript.Name = "lblItemDescript"
+        Me.lblItemDescript.Size = New System.Drawing.Size(164, 27)
+        Me.lblItemDescript.TabIndex = 7
+        Me.lblItemDescript.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label2
+        '
+        Me.Label2.Location = New System.Drawing.Point(499, 28)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(120, 26)
+        Me.Label2.TabIndex = 5
+        Me.Label2.Text = "Item Cost"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label1
+        '
+        Me.Label1.Location = New System.Drawing.Point(326, 28)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(120, 26)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Choose Item"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'txtAmt
+        '
+        Me.txtAmt.Location = New System.Drawing.Point(641, 55)
+        Me.txtAmt.Name = "txtAmt"
+        Me.txtAmt.Size = New System.Drawing.Size(125, 22)
+        Me.txtAmt.TabIndex = 2
+        Me.txtAmt.Text = ""
+        '
+        'txtItemAmt
+        '
+        Me.txtItemAmt.DataBindings.Add(New System.Windows.Forms.Binding("Tag", Me.DsItem, "TBLITEM.ITEMCOST"))
+        Me.txtItemAmt.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsItem, "TBLITEM.ITEMCOST"))
+        Me.txtItemAmt.Location = New System.Drawing.Point(496, 55)
+        Me.txtItemAmt.Name = "txtItemAmt"
+        Me.txtItemAmt.Size = New System.Drawing.Size(124, 22)
+        Me.txtItemAmt.TabIndex = 2
+        Me.txtItemAmt.TabStop = False
+        Me.txtItemAmt.Text = ""
+        '
+        'cboItem
+        '
+        Me.cboItem.DataSource = Me.DsItem
+        Me.cboItem.DisplayMember = "TBLITEM.ITEMID"
+        Me.cboItem.Location = New System.Drawing.Point(325, 54)
+        Me.cboItem.Name = "cboItem"
+        Me.cboItem.Size = New System.Drawing.Size(145, 24)
+        Me.cboItem.TabIndex = 1
+        '
+        'Label4
+        '
+        Me.Label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label4.Location = New System.Drawing.Point(19, 572)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(120, 27)
+        Me.Label4.TabIndex = 7
+        Me.Label4.Text = "Subtotal"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label5
+        '
+        Me.Label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label5.Location = New System.Drawing.Point(168, 572)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(120, 27)
+        Me.Label5.TabIndex = 8
+        Me.Label5.Text = "Tax"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label6
+        '
+        Me.Label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label6.Location = New System.Drawing.Point(317, 572)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(120, 27)
+        Me.Label6.TabIndex = 9
+        Me.Label6.Text = "Total"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblSubtotal
+        '
+        Me.lblSubtotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblSubtotal.Location = New System.Drawing.Point(19, 609)
+        Me.lblSubtotal.Name = "lblSubtotal"
+        Me.lblSubtotal.Size = New System.Drawing.Size(120, 27)
+        Me.lblSubtotal.TabIndex = 10
+        Me.lblSubtotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblTax
+        '
+        Me.lblTax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblTax.Location = New System.Drawing.Point(163, 609)
+        Me.lblTax.Name = "lblTax"
+        Me.lblTax.Size = New System.Drawing.Size(120, 27)
+        Me.lblTax.TabIndex = 11
+        Me.lblTax.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblTotal
+        '
+        Me.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblTotal.Location = New System.Drawing.Point(317, 609)
+        Me.lblTotal.Name = "lblTotal"
+        Me.lblTotal.Size = New System.Drawing.Size(120, 27)
+        Me.lblTotal.TabIndex = 12
+        Me.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblChange
+        '
+        Me.lblChange.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblChange.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.lblChange.Location = New System.Drawing.Point(605, 609)
+        Me.lblChange.Name = "lblChange"
+        Me.lblChange.Size = New System.Drawing.Size(120, 27)
+        Me.lblChange.TabIndex = 13
+        Me.lblChange.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'txtAmtGiven
+        '
+        Me.txtAmtGiven.Location = New System.Drawing.Point(461, 609)
+        Me.txtAmtGiven.Name = "txtAmtGiven"
+        Me.txtAmtGiven.Size = New System.Drawing.Size(120, 22)
+        Me.txtAmtGiven.TabIndex = 0
+        Me.txtAmtGiven.Text = ""
+        '
+        'btnSubtotal
+        '
+        Me.btnSubtotal.Location = New System.Drawing.Point(461, 572)
+        Me.btnSubtotal.Name = "btnSubtotal"
+        Me.btnSubtotal.Size = New System.Drawing.Size(125, 27)
+        Me.btnSubtotal.TabIndex = 1
+        Me.btnSubtotal.Text = "Calculate Change"
+        '
+        'btnOrderComplete
+        '
+        Me.btnOrderComplete.Location = New System.Drawing.Point(19, 665)
+        Me.btnOrderComplete.Name = "btnOrderComplete"
+        Me.btnOrderComplete.Size = New System.Drawing.Size(125, 26)
+        Me.btnOrderComplete.TabIndex = 2
+        Me.btnOrderComplete.Text = "Order Complete"
+        '
+        'daItemType
+        '
+        Me.daItemType.DeleteCommand = Me.OleDbDeleteCommand3
+        Me.daItemType.InsertCommand = Me.OleDbInsertCommand3
+        Me.daItemType.SelectCommand = Me.OleDbSelectCommand5
+        Me.daItemType.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "TBLITEMTYPE", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("ITEMTYPEID", "ITEMTYPEID"), New System.Data.Common.DataColumnMapping("ITEMTYPEDESC", "ITEMTYPEDESC")})})
+        Me.daItemType.UpdateCommand = Me.OleDbUpdateCommand3
+        '
+        'OleDbDeleteCommand3
+        '
+        Me.OleDbDeleteCommand3.CommandText = "DELETE FROM TBLITEMTYPE WHERE (ITEMTYPEID = ?) AND (ITEMTYPEDESC = ? OR ? IS NULL" & _
+        " AND ITEMTYPEDESC IS NULL)"
+        Me.OleDbDeleteCommand3.Connection = Me.cnBAA
+        Me.OleDbDeleteCommand3.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMTYPEID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMTYPEID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand3.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMTYPEDESC", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMTYPEDESC", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand3.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMTYPEDESC1", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMTYPEDESC", System.Data.DataRowVersion.Original, Nothing))
+        '
+        'OleDbInsertCommand3
+        '
+        Me.OleDbInsertCommand3.CommandText = "INSERT INTO TBLITEMTYPE(ITEMTYPEID, ITEMTYPEDESC) VALUES (?, ?)"
+        Me.OleDbInsertCommand3.Connection = Me.cnBAA
+        Me.OleDbInsertCommand3.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMTYPEID", System.Data.OleDb.OleDbType.Integer, 0, "ITEMTYPEID"))
+        Me.OleDbInsertCommand3.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMTYPEDESC", System.Data.OleDb.OleDbType.VarWChar, 50, "ITEMTYPEDESC"))
+        '
+        'OleDbSelectCommand5
+        '
+        Me.OleDbSelectCommand5.CommandText = "SELECT ITEMTYPEID, ITEMTYPEDESC FROM TBLITEMTYPE"
+        Me.OleDbSelectCommand5.Connection = Me.cnBAA
+        '
+        'OleDbUpdateCommand3
+        '
+        Me.OleDbUpdateCommand3.CommandText = "UPDATE TBLITEMTYPE SET ITEMTYPEID = ?, ITEMTYPEDESC = ? WHERE (ITEMTYPEID = ?) AN" & _
+        "D (ITEMTYPEDESC = ? OR ? IS NULL AND ITEMTYPEDESC IS NULL)"
+        Me.OleDbUpdateCommand3.Connection = Me.cnBAA
+        Me.OleDbUpdateCommand3.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMTYPEID", System.Data.OleDb.OleDbType.Integer, 0, "ITEMTYPEID"))
+        Me.OleDbUpdateCommand3.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMTYPEDESC", System.Data.OleDb.OleDbType.VarWChar, 50, "ITEMTYPEDESC"))
+        Me.OleDbUpdateCommand3.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMTYPEID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMTYPEID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand3.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMTYPEDESC", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMTYPEDESC", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand3.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMTYPEDESC1", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMTYPEDESC", System.Data.DataRowVersion.Original, Nothing))
+        '
+        'daItem
+        '
+        Me.daItem.DeleteCommand = Me.OleDbDeleteCommand4
+        Me.daItem.InsertCommand = Me.OleDbInsertCommand4
+        Me.daItem.SelectCommand = Me.OleDbSelectCommand6
+        Me.daItem.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "TBLITEM", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("ITEMDESC", "ITEMDESC"), New System.Data.Common.DataColumnMapping("ITEMID", "ITEMID"), New System.Data.Common.DataColumnMapping("ITEMCOST", "ITEMCOST"), New System.Data.Common.DataColumnMapping("ITEMCOUNT", "ITEMCOUNT")})})
+        Me.daItem.UpdateCommand = Me.OleDbUpdateCommand4
+        '
+        'OleDbDeleteCommand4
+        '
+        Me.OleDbDeleteCommand4.CommandText = "DELETE FROM TBLITEM WHERE (ITEMID = ?) AND (ITEMCOST = ? OR ? IS NULL AND ITEMCOS" & _
+        "T IS NULL) AND (ITEMCOUNT = ? OR ? IS NULL AND ITEMCOUNT IS NULL) AND (ITEMDESC " & _
+        "= ? OR ? IS NULL AND ITEMDESC IS NULL)"
+        Me.OleDbDeleteCommand4.Connection = Me.cnBAA
+        Me.OleDbDeleteCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMCOST", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMCOST", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMCOST1", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMCOST", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMCOUNT", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMCOUNT", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMCOUNT1", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMCOUNT", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMDESC", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMDESC", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMDESC1", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMDESC", System.Data.DataRowVersion.Original, Nothing))
+        '
+        'OleDbInsertCommand4
+        '
+        Me.OleDbInsertCommand4.CommandText = "INSERT INTO TBLITEM(ITEMDESC, ITEMID, ITEMCOST, ITEMCOUNT) VALUES (?, ?, ?, ?)"
+        Me.OleDbInsertCommand4.Connection = Me.cnBAA
+        Me.OleDbInsertCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMDESC", System.Data.OleDb.OleDbType.VarWChar, 50, "ITEMDESC"))
+        Me.OleDbInsertCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMID", System.Data.OleDb.OleDbType.Integer, 0, "ITEMID"))
+        Me.OleDbInsertCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMCOST", System.Data.OleDb.OleDbType.Currency, 0, "ITEMCOST"))
+        Me.OleDbInsertCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMCOUNT", System.Data.OleDb.OleDbType.Integer, 0, "ITEMCOUNT"))
+        '
+        'OleDbSelectCommand6
+        '
+        Me.OleDbSelectCommand6.CommandText = "SELECT ITEMDESC, ITEMID, ITEMCOST, ITEMCOUNT FROM TBLITEM WHERE (ITEMTYPE = ?)"
+        Me.OleDbSelectCommand6.Connection = Me.cnBAA
+        Me.OleDbSelectCommand6.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMTYPE", System.Data.OleDb.OleDbType.Integer, 0, "ITEMTYPE"))
+        '
+        'OleDbUpdateCommand4
+        '
+        Me.OleDbUpdateCommand4.CommandText = "UPDATE TBLITEM SET ITEMDESC = ?, ITEMID = ?, ITEMCOST = ?, ITEMCOUNT = ? WHERE (I" & _
+        "TEMID = ?) AND (ITEMCOST = ? OR ? IS NULL AND ITEMCOST IS NULL) AND (ITEMCOUNT =" & _
+        " ? OR ? IS NULL AND ITEMCOUNT IS NULL) AND (ITEMDESC = ? OR ? IS NULL AND ITEMDE" & _
+        "SC IS NULL)"
+        Me.OleDbUpdateCommand4.Connection = Me.cnBAA
+        Me.OleDbUpdateCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMDESC", System.Data.OleDb.OleDbType.VarWChar, 50, "ITEMDESC"))
+        Me.OleDbUpdateCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMID", System.Data.OleDb.OleDbType.Integer, 0, "ITEMID"))
+        Me.OleDbUpdateCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMCOST", System.Data.OleDb.OleDbType.Currency, 0, "ITEMCOST"))
+        Me.OleDbUpdateCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMCOUNT", System.Data.OleDb.OleDbType.Integer, 0, "ITEMCOUNT"))
+        Me.OleDbUpdateCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMCOST", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMCOST", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMCOST1", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMCOST", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMCOUNT", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMCOUNT", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMCOUNT1", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMCOUNT", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMDESC", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMDESC", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand4.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ITEMDESC1", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ITEMDESC", System.Data.DataRowVersion.Original, Nothing))
+        '
+        'daInsertOrder
+        '
+        Me.daInsertOrder.DeleteCommand = Me.OleDbDeleteCommand5
+        Me.daInsertOrder.InsertCommand = Me.OleDbInsertCommand5
+        Me.daInsertOrder.SelectCommand = Me.OleDbSelectCommand7
+        Me.daInsertOrder.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "TBLORDER", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("ARTIST", "ARTIST"), New System.Data.Common.DataColumnMapping("ARTTOTAL", "ARTTOTAL"), New System.Data.Common.DataColumnMapping("INVOICEID", "INVOICEID"), New System.Data.Common.DataColumnMapping("ORDERID", "ORDERID"), New System.Data.Common.DataColumnMapping("SALES", "SALES"), New System.Data.Common.DataColumnMapping("STOREID", "STOREID"), New System.Data.Common.DataColumnMapping("SUBTOTAL", "SUBTOTAL"), New System.Data.Common.DataColumnMapping("TAX", "TAX"), New System.Data.Common.DataColumnMapping("TOTAL", "TOTAL"), New System.Data.Common.DataColumnMapping("TRANDATE", "TRANDATE")})})
+        Me.daInsertOrder.UpdateCommand = Me.OleDbUpdateCommand5
+        '
+        'OleDbDeleteCommand5
+        '
+        Me.OleDbDeleteCommand5.CommandText = "DELETE FROM TBLORDER WHERE (ORDERID = ?) AND (ARTIST = ? OR ? IS NULL AND ARTIST " & _
+        "IS NULL) AND (ARTTOTAL = ? OR ? IS NULL AND ARTTOTAL IS NULL) AND (INVOICEID = ?" & _
+        " OR ? IS NULL AND INVOICEID IS NULL) AND (SALES = ? OR ? IS NULL AND SALES IS NU" & _
+        "LL) AND (STOREID = ? OR ? IS NULL AND STOREID IS NULL) AND (SUBTOTAL = ? OR ? IS" & _
+        " NULL AND SUBTOTAL IS NULL) AND (TAX = ? OR ? IS NULL AND TAX IS NULL) AND (TOTA" & _
+        "L = ? OR ? IS NULL AND TOTAL IS NULL) AND (TRANDATE = ? OR ? IS NULL AND TRANDAT" & _
+        "E IS NULL)"
+        Me.OleDbDeleteCommand5.Connection = Me.cnBAA
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ORDERID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ORDERID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ARTIST", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ARTIST", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ARTIST1", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ARTIST", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ARTTOTAL", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ARTTOTAL", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ARTTOTAL1", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ARTTOTAL", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_INVOICEID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "INVOICEID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_INVOICEID1", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "INVOICEID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SALES", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "SALES", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SALES1", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "SALES", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_STOREID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "STOREID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_STOREID1", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "STOREID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SUBTOTAL", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "SUBTOTAL", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SUBTOTAL1", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "SUBTOTAL", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_TAX", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TAX", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_TAX1", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TAX", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_TOTAL", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TOTAL", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_TOTAL1", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TOTAL", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_TRANDATE", System.Data.OleDb.OleDbType.DBDate, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TRANDATE", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_TRANDATE1", System.Data.OleDb.OleDbType.DBDate, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TRANDATE", System.Data.DataRowVersion.Original, Nothing))
+        '
+        'OleDbInsertCommand5
+        '
+        Me.OleDbInsertCommand5.CommandText = "INSERT INTO TBLORDER(ARTIST, ARTTOTAL, INVOICEID, ORDERID, SALES, STOREID, SUBTOT" & _
+        "AL, TAX, TOTAL, TRANDATE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        Me.OleDbInsertCommand5.Connection = Me.cnBAA
+        Me.OleDbInsertCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("ARTIST", System.Data.OleDb.OleDbType.VarWChar, 50, "ARTIST"))
+        Me.OleDbInsertCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("ARTTOTAL", System.Data.OleDb.OleDbType.Currency, 0, "ARTTOTAL"))
+        Me.OleDbInsertCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("INVOICEID", System.Data.OleDb.OleDbType.Integer, 0, "INVOICEID"))
+        Me.OleDbInsertCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("ORDERID", System.Data.OleDb.OleDbType.Integer, 0, "ORDERID"))
+        Me.OleDbInsertCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("SALES", System.Data.OleDb.OleDbType.VarWChar, 50, "SALES"))
+        Me.OleDbInsertCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("STOREID", System.Data.OleDb.OleDbType.Integer, 0, "STOREID"))
+        Me.OleDbInsertCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("SUBTOTAL", System.Data.OleDb.OleDbType.Currency, 0, "SUBTOTAL"))
+        Me.OleDbInsertCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("TAX", System.Data.OleDb.OleDbType.Currency, 0, "TAX"))
+        Me.OleDbInsertCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("TOTAL", System.Data.OleDb.OleDbType.Currency, 0, "TOTAL"))
+        Me.OleDbInsertCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("TRANDATE", System.Data.OleDb.OleDbType.DBDate, 0, "TRANDATE"))
+        '
+        'OleDbSelectCommand7
+        '
+        Me.OleDbSelectCommand7.CommandText = "SELECT ARTIST, ARTTOTAL, INVOICEID, ORDERID, SALES, STOREID, SUBTOTAL, TAX, TOTAL" & _
+        ", TRANDATE FROM TBLORDER"
+        Me.OleDbSelectCommand7.Connection = Me.cnBAA
+        '
+        'OleDbUpdateCommand5
+        '
+        Me.OleDbUpdateCommand5.CommandText = "UPDATE TBLORDER SET ARTIST = ?, ARTTOTAL = ?, INVOICEID = ?, ORDERID = ?, SALES =" & _
+        " ?, STOREID = ?, SUBTOTAL = ?, TAX = ?, TOTAL = ?, TRANDATE = ? WHERE (ORDERID =" & _
+        " ?) AND (ARTIST = ? OR ? IS NULL AND ARTIST IS NULL) AND (ARTTOTAL = ? OR ? IS N" & _
+        "ULL AND ARTTOTAL IS NULL) AND (INVOICEID = ? OR ? IS NULL AND INVOICEID IS NULL)" & _
+        " AND (SALES = ? OR ? IS NULL AND SALES IS NULL) AND (STOREID = ? OR ? IS NULL AN" & _
+        "D STOREID IS NULL) AND (SUBTOTAL = ? OR ? IS NULL AND SUBTOTAL IS NULL) AND (TAX" & _
+        " = ? OR ? IS NULL AND TAX IS NULL) AND (TOTAL = ? OR ? IS NULL AND TOTAL IS NULL" & _
+        ") AND (TRANDATE = ? OR ? IS NULL AND TRANDATE IS NULL)"
+        Me.OleDbUpdateCommand5.Connection = Me.cnBAA
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("ARTIST", System.Data.OleDb.OleDbType.VarWChar, 50, "ARTIST"))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("ARTTOTAL", System.Data.OleDb.OleDbType.Currency, 0, "ARTTOTAL"))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("INVOICEID", System.Data.OleDb.OleDbType.Integer, 0, "INVOICEID"))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("ORDERID", System.Data.OleDb.OleDbType.Integer, 0, "ORDERID"))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("SALES", System.Data.OleDb.OleDbType.VarWChar, 50, "SALES"))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("STOREID", System.Data.OleDb.OleDbType.Integer, 0, "STOREID"))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("SUBTOTAL", System.Data.OleDb.OleDbType.Currency, 0, "SUBTOTAL"))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("TAX", System.Data.OleDb.OleDbType.Currency, 0, "TAX"))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("TOTAL", System.Data.OleDb.OleDbType.Currency, 0, "TOTAL"))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("TRANDATE", System.Data.OleDb.OleDbType.DBDate, 0, "TRANDATE"))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ORDERID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ORDERID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ARTIST", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ARTIST", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ARTIST1", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ARTIST", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ARTTOTAL", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ARTTOTAL", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_ARTTOTAL1", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "ARTTOTAL", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_INVOICEID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "INVOICEID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_INVOICEID1", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "INVOICEID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SALES", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "SALES", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SALES1", System.Data.OleDb.OleDbType.VarWChar, 50, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "SALES", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_STOREID", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "STOREID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_STOREID1", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "STOREID", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SUBTOTAL", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "SUBTOTAL", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_SUBTOTAL1", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "SUBTOTAL", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_TAX", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TAX", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_TAX1", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TAX", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_TOTAL", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TOTAL", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_TOTAL1", System.Data.OleDb.OleDbType.Currency, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TOTAL", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_TRANDATE", System.Data.OleDb.OleDbType.DBDate, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TRANDATE", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand5.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_TRANDATE1", System.Data.OleDb.OleDbType.DBDate, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TRANDATE", System.Data.DataRowVersion.Original, Nothing))
+        '
+        'daInsertTransaction
+        '
+        Me.daInsertTransaction.InsertCommand = Me.OleDbInsertCommand6
+        Me.daInsertTransaction.SelectCommand = Me.OleDbSelectCommand8
+        Me.daInsertTransaction.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "TBLTRAN", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("ARTTOTAL", "ARTTOTAL"), New System.Data.Common.DataColumnMapping("ITEMCOST", "ITEMCOST"), New System.Data.Common.DataColumnMapping("ITEMDESC", "ITEMDESC"), New System.Data.Common.DataColumnMapping("ITEMID", "ITEMID"), New System.Data.Common.DataColumnMapping("ORDERID", "ORDERID"), New System.Data.Common.DataColumnMapping("SUBTOTAL", "SUBTOTAL"), New System.Data.Common.DataColumnMapping("TRANID", "TRANID"), New System.Data.Common.DataColumnMapping("NOTES", "NOTES")})})
+        '
+        'OleDbInsertCommand6
+        '
+        Me.OleDbInsertCommand6.CommandText = "INSERT INTO TBLTRAN(ARTTOTAL, ITEMCOST, ITEMDESC, ITEMID, ORDERID, SUBTOTAL, NOTE" & _
+        "S) VALUES (?, ?, ?, ?, ?, ?, ?)"
+        Me.OleDbInsertCommand6.Connection = Me.cnBAA
+        Me.OleDbInsertCommand6.Parameters.Add(New System.Data.OleDb.OleDbParameter("ARTTOTAL", System.Data.OleDb.OleDbType.Currency, 0, "ARTTOTAL"))
+        Me.OleDbInsertCommand6.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMCOST", System.Data.OleDb.OleDbType.Currency, 0, "ITEMCOST"))
+        Me.OleDbInsertCommand6.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMDESC", System.Data.OleDb.OleDbType.VarWChar, 50, "ITEMDESC"))
+        Me.OleDbInsertCommand6.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMID", System.Data.OleDb.OleDbType.Integer, 0, "ITEMID"))
+        Me.OleDbInsertCommand6.Parameters.Add(New System.Data.OleDb.OleDbParameter("ORDERID", System.Data.OleDb.OleDbType.Integer, 0, "ORDERID"))
+        Me.OleDbInsertCommand6.Parameters.Add(New System.Data.OleDb.OleDbParameter("SUBTOTAL", System.Data.OleDb.OleDbType.Currency, 0, "SUBTOTAL"))
+        Me.OleDbInsertCommand6.Parameters.Add(New System.Data.OleDb.OleDbParameter("NOTES", System.Data.OleDb.OleDbType.VarChar, 50, "NOTES"))
+        '
+        'OleDbSelectCommand8
+        '
+        Me.OleDbSelectCommand8.CommandText = "SELECT ARTTOTAL, ITEMCOST, ITEMDESC, ITEMID, ORDERID, SUBTOTAL, TRANID, NOTES FRO" & _
+        "M TBLTRAN"
+        Me.OleDbSelectCommand8.Connection = Me.cnBAA
+        '
+        'daTransactions
+        '
+        Me.daTransactions.InsertCommand = Me.OleDbInsertCommand7
+        Me.daTransactions.SelectCommand = Me.OleDbSelectCommand9
+        Me.daTransactions.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "TBLTRAN", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("ARTTOTAL", "ARTTOTAL"), New System.Data.Common.DataColumnMapping("ITEMCOST", "ITEMCOST"), New System.Data.Common.DataColumnMapping("ITEMDESC", "ITEMDESC"), New System.Data.Common.DataColumnMapping("ITEMID", "ITEMID"), New System.Data.Common.DataColumnMapping("ORDERID", "ORDERID"), New System.Data.Common.DataColumnMapping("SUBTOTAL", "SUBTOTAL"), New System.Data.Common.DataColumnMapping("TRANID", "TRANID"), New System.Data.Common.DataColumnMapping("NOTES", "NOTES")})})
+        '
+        'OleDbInsertCommand7
+        '
+        Me.OleDbInsertCommand7.CommandText = "INSERT INTO TBLTRAN(ARTTOTAL, ITEMCOST, ITEMDESC, ITEMID, ORDERID, SUBTOTAL, NOTE" & _
+        "S) VALUES (?, ?, ?, ?, ?, ?, ?)"
+        Me.OleDbInsertCommand7.Connection = Me.cnBAA
+        Me.OleDbInsertCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("ARTTOTAL", System.Data.OleDb.OleDbType.Currency, 0, "ARTTOTAL"))
+        Me.OleDbInsertCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMCOST", System.Data.OleDb.OleDbType.Currency, 0, "ITEMCOST"))
+        Me.OleDbInsertCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMDESC", System.Data.OleDb.OleDbType.VarWChar, 50, "ITEMDESC"))
+        Me.OleDbInsertCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("ITEMID", System.Data.OleDb.OleDbType.Integer, 0, "ITEMID"))
+        Me.OleDbInsertCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("ORDERID", System.Data.OleDb.OleDbType.Integer, 0, "ORDERID"))
+        Me.OleDbInsertCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("SUBTOTAL", System.Data.OleDb.OleDbType.Currency, 0, "SUBTOTAL"))
+        Me.OleDbInsertCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("NOTES", System.Data.OleDb.OleDbType.VarChar, 50, "NOTES"))
+        '
+        'OleDbSelectCommand9
+        '
+        Me.OleDbSelectCommand9.CommandText = "SELECT ARTTOTAL, ITEMCOST, ITEMDESC, ITEMID, ORDERID, SUBTOTAL, TRANID, NOTES FRO" & _
+        "M TBLTRAN WHERE (ORDERID = ?)"
+        Me.OleDbSelectCommand9.Connection = Me.cnBAA
+        Me.OleDbSelectCommand9.Parameters.Add(New System.Data.OleDb.OleDbParameter("ORDERID", System.Data.OleDb.OleDbType.Integer, 0, "ORDERID"))
+        '
+        'Label7
+        '
+        Me.Label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label7.Location = New System.Drawing.Point(19, 46)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(173, 27)
+        Me.Label7.TabIndex = 17
+        Me.Label7.Text = "Order Number"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label8
+        '
+        Me.Label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label8.Location = New System.Drawing.Point(259, 46)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(163, 27)
+        Me.Label8.TabIndex = 125
+        Me.Label8.Text = "Sales Associate"
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label9
+        '
+        Me.Label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label9.Location = New System.Drawing.Point(682, 46)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(163, 27)
+        Me.Label9.TabIndex = 125
+        Me.Label9.Text = "Artist"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label9.Visible = False
+        '
+        'daTotals
+        '
+        Me.daTotals.SelectCommand = Me.OleDbSelectCommand10
+        Me.daTotals.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "Table", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("stot", "stot"), New System.Data.Common.DataColumnMapping("art", "art")})})
+        '
+        'OleDbSelectCommand10
+        '
+        Me.OleDbSelectCommand10.CommandText = "SELECT SUM(SUBTOTAL) AS stot, SUM(ARTTOTAL) AS art FROM TBLTRAN WHERE (ORDERID = " & _
+        "?)"
+        Me.OleDbSelectCommand10.Connection = Me.cnBAA
+        Me.OleDbSelectCommand10.Parameters.Add(New System.Data.OleDb.OleDbParameter("ORDERID", System.Data.OleDb.OleDbType.Integer, 0, "ORDERID"))
+        '
+        'daTax
+        '
+        Me.daTax.DeleteCommand = Me.OleDbDeleteCommand7
+        Me.daTax.InsertCommand = Me.OleDbInsertCommand8
+        Me.daTax.SelectCommand = Me.OleDbSelectCommand11
+        Me.daTax.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "TBLTAX", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("StateTax", "StateTax"), New System.Data.Common.DataColumnMapping("taxid", "taxid")})})
+        Me.daTax.UpdateCommand = Me.OleDbUpdateCommand7
+        '
+        'OleDbDeleteCommand7
+        '
+        Me.OleDbDeleteCommand7.CommandText = "DELETE FROM TBLTAX WHERE (taxid = ?) AND (StateTax = ? OR ? IS NULL AND StateTax " & _
+        "IS NULL)"
+        Me.OleDbDeleteCommand7.Connection = Me.cnBAA
+        Me.OleDbDeleteCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_taxid", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "taxid", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_StateTax", System.Data.OleDb.OleDbType.Double, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "StateTax", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbDeleteCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_StateTax1", System.Data.OleDb.OleDbType.Double, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "StateTax", System.Data.DataRowVersion.Original, Nothing))
+        '
+        'OleDbInsertCommand8
+        '
+        Me.OleDbInsertCommand8.CommandText = "INSERT INTO TBLTAX(StateTax) VALUES (?)"
+        Me.OleDbInsertCommand8.Connection = Me.cnBAA
+        Me.OleDbInsertCommand8.Parameters.Add(New System.Data.OleDb.OleDbParameter("StateTax", System.Data.OleDb.OleDbType.Double, 0, "StateTax"))
+        '
+        'OleDbSelectCommand11
+        '
+        Me.OleDbSelectCommand11.CommandText = "SELECT StateTax, taxid FROM TBLTAX"
+        Me.OleDbSelectCommand11.Connection = Me.cnBAA
+        '
+        'OleDbUpdateCommand7
+        '
+        Me.OleDbUpdateCommand7.CommandText = "UPDATE TBLTAX SET StateTax = ? WHERE (taxid = ?) AND (StateTax = ? OR ? IS NULL A" & _
+        "ND StateTax IS NULL)"
+        Me.OleDbUpdateCommand7.Connection = Me.cnBAA
+        Me.OleDbUpdateCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("StateTax", System.Data.OleDb.OleDbType.Double, 0, "StateTax"))
+        Me.OleDbUpdateCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_taxid", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "taxid", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_StateTax", System.Data.OleDb.OleDbType.Double, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "StateTax", System.Data.DataRowVersion.Original, Nothing))
+        Me.OleDbUpdateCommand7.Parameters.Add(New System.Data.OleDb.OleDbParameter("Original_StateTax1", System.Data.OleDb.OleDbType.Double, 0, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "StateTax", System.Data.DataRowVersion.Original, Nothing))
+        '
+        'Label11
+        '
+        Me.Label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label11.Location = New System.Drawing.Point(605, 572)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(120, 27)
+        Me.Label11.TabIndex = 126
+        Me.Label11.Text = "Change"
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'frmOrderForm
+        '
+        Me.AutoScaleBaseSize = New System.Drawing.Size(6, 15)
+        Me.AutoScroll = True
+        Me.ClientSize = New System.Drawing.Size(1209, 743)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.btnOrderComplete)
+        Me.Controls.Add(Me.btnSubtotal)
+        Me.Controls.Add(Me.txtAmtGiven)
+        Me.Controls.Add(Me.lblChange)
+        Me.Controls.Add(Me.lblTotal)
+        Me.Controls.Add(Me.lblTax)
+        Me.Controls.Add(Me.lblSubtotal)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.gbOrder)
+        Me.Controls.Add(Me.dtdate)
+        Me.Controls.Add(Me.chkArtist)
+        Me.Controls.Add(Me.cboArtist)
+        Me.Controls.Add(Me.lblRetailStore)
+        Me.Controls.Add(Me.lblOrderID)
+        Me.Controls.Add(Me.cboSales)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.Label9)
+        Me.Name = "frmOrderForm"
+        Me.Text = "Order Form"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        CType(Me.DsSales, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsArtist, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gbOrder.ResumeLayout(False)
+        CType(Me.DsItem, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsItemType, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgTransactions, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsTransactions, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+
+    End Sub
+
+#End Region
+    Dim mstr7 As String
+    Dim mstr8 As String
+    Dim mstr9 As String
+    Dim mstr4 As String
+    Dim mstr5 As String
+    Dim mstr6 As String
+    Dim mstr1 As String
+    Dim mstr2 As String
+    Dim mstr3 As String
+    Dim mstr0 As String
+    Dim mstr00 As String
+    Dim mstrDecimal As String
+    Dim mstrSubtotal As String
+    Dim mdbl1595 As Double = 15.95
+    Dim mdbl1595tot As Double
+    Dim mdbl595 As Double = 5.95
+    Dim mdbl595tot As Double
+    Dim mdbl2095 As Double = 20.95
+    Dim mdbl2095tot As Double
+    Dim mdbl2495 As Double = 24.95
+    Dim mdbl2495tot As Double
+    Dim mdbl2795 As Double = 27.95
+    Dim mdbl2795tot As Double
+    Dim mdbltot As Double
+    Dim mdbl3 As Double = 3
+    Dim mdbl3tot As Double
+    Dim mdbl1995 As Double = 19.95
+    Dim mdbl1995tot As Double
+    Dim mdbl2295 As Double = 22.95
+    Dim mdbl2295tot As Double
+    Dim mblnNotes As Boolean = True
+    Dim mdblarttotal As Double
+    
+    'declare arrays
+    Public intTranid() As Integer
+    Private Sub frmOrderForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        dtdate.Value = DateTime.Now
+        Dim intRetailValid As Integer
+
+        Dim strretailloc As String = Me.lblRetailStore.Text
+        Dim intRSid As Integer
+
+        Dim intOrderID As Integer
+        Dim strOrderID As String
+        Dim strRetail As String
+        daSales.Fill(DsSales)
+        daArtist.Fill(DsArtist)
+        daItemType.Fill(DsItemType)
+
+
+
+        Dim sqlShirt As String = "Select * from TBLRETAIL where RETAILNAME = ? and status = 'A'"
+        Dim cmShirt As New OleDb.OleDbCommand(sqlShirt, cnBAA)
+        cmShirt.Parameters.Add(New OleDb.OleDbParameter("RETAILNAME", OleDb.OleDbType.VarChar, 50))
+        cmShirt.Parameters("RETAILNAME").Value = strretailloc
+        cnBAA.Open()
+        Dim rdrShirt As OleDb.OleDbDataReader
+        rdrShirt = cmShirt.ExecuteReader
+        Do While rdrShirt.Read
+            intRSid = rdrShirt.Item("retailid")
+
+        Loop
+        rdrShirt.Close()
+        cnBAA.Close()
+        If intRSid = 0 Then
+            MsgBox("You must have a valid store to continue with order. Exit Form")
+        End If
+        Dim sqlValidStore As String = "select * from tblorder where storeid = ?"
+        Dim cmValidStore As New OleDb.OleDbCommand(sqlValidStore, cnBAA)
+        cmValidStore.Parameters.Add(New OleDb.OleDbParameter("storeid", OleDb.OleDbType.Integer, 0))
+        cmValidStore.Parameters("storeid").Value = intRSid
+        cnBAA.Open()
+        Dim rdrValidStore As OleDb.OleDbDataReader
+        rdrValidStore = cmValidStore.ExecuteReader
+        Do While rdrValidStore.Read
+            intRetailValid += 1
+        Loop
+        rdrValidStore.Close()
+        cnBAA.Close()
+
+        If intRetailValid = 0 Then
+            MsgBox("You must have a valid store to continue with order.Exit Form")
+            Exit Sub
+        End If
+        daOrderID.SelectCommand.Connection.Open()
+        daOrderID.SelectCommand.Parameters("storeid").Value = intRSid
+        Dim rdrOrderID As OleDb.OleDbDataReader
+
+        rdrOrderID = daOrderID.SelectCommand.ExecuteReader()
+        rdrOrderID.Read()
+
+        intOrderID = rdrOrderID.Item("LastID")
+        strOrderID = intOrderID.ToString
+        strRetail = Mid(strOrderID, 1, 1)
+        strOrderID = Mid(strOrderID, 2)
+        intOrderID = ToInt32(strOrderID)
+        intOrderID += 1
+        strOrderID = strRetail + intOrderID.ToString
+        lblOrderID.Text = strOrderID
+        rdrOrderID.Close()
+        daOrderID.SelectCommand.Connection.Close()
+        Call GetTransactions()
+        Call GetTotals()
+        Call FillItems()
+
+
+    End Sub
+    Private Sub FillItems()
+        Try
+            Dim intone As Integer = 1
+            'which is used for the combobox cboitem, opens the daItem connection 
+            'fills the where value for the daItem command from the combobox cboItemtype
+            'creates a datareader then executes the reader and them closes the connection. 
+            'then fills the dataset dsItem fro mthe daItem
+            DsItem.Clear()
+            daItem.SelectCommand.Connection.Open()
+            daItem.SelectCommand.Parameters("itemtype").Value = ToInt32(intone)
+            Dim rdrOrderID As OleDb.OleDbDataReader
+
+            rdrOrderID = daOrderID.SelectCommand.ExecuteReader()
+            rdrOrderID.Read()
+            daItem.SelectCommand.Connection.Close()
+
+            daItem.Fill(DsItem)
+
+        Catch sqlEX As SqlClient.SqlException
+            'This will catch sql exceptions
+            MessageBox.Show(sqlEX.Message)
+
+        Catch ex As Exception
+            'This will catch all others
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+    Private Sub GetTransactions()
+        DsTransactions.Clear()
+        daTransactions.SelectCommand.Connection.Open()
+        daTransactions.SelectCommand.Parameters("orderid").Value = ToInt32(Me.lblOrderID.Text)
+
+        daTransactions.SelectCommand.Connection.Close()
+        daTransactions.Fill(DsTransactions)
+    End Sub
+
+    Private Sub chkArtist_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkArtist.CheckedChanged
+        If chkArtist.CheckState = CheckState.Checked Then
+            Me.cboArtist.Visible = True
+        ElseIf chkArtist.CheckState = CheckState.Unchecked Then
+            Me.cboArtist.Visible = False
+        End If
+    End Sub
+    Private Sub btn7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn7.Click
+        mstr7 = "7"
+        mstrSubtotal = mstrSubtotal + mstr7
+
+    End Sub
+
+    Private Sub btn8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn8.Click
+        mstr8 = "8"
+        mstrSubtotal = mstrSubtotal + mstr8
+
+    End Sub
+
+    Private Sub btn9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn9.Click
+        mstr9 = "9"
+        mstrSubtotal = mstrSubtotal + mstr9
+
+    End Sub
+
+    Private Sub btn4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn4.Click
+        mstr4 = "4"
+        mstrSubtotal = mstrSubtotal + mstr4
+
+    End Sub
+
+    Private Sub btn5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn5.Click
+        mstr5 = "5"
+        mstrSubtotal = mstrSubtotal + mstr5
+
+    End Sub
+
+    Private Sub btn6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn6.Click
+        mstr6 = "6"
+        mstrSubtotal = mstrSubtotal + mstr6
+    End Sub
+
+    Private Sub btn1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn1.Click
+        mstr1 = "1"
+        mstrSubtotal = mstrSubtotal + mstr1
+    End Sub
+
+    Private Sub btn2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn2.Click
+        mstr2 = "2"
+        mstrSubtotal = mstrSubtotal + mstr2
+    End Sub
+
+    Private Sub btn3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn3.Click
+        mstr3 = "3"
+        mstrSubtotal = mstrSubtotal + mstr3
+    End Sub
+
+    Private Sub btn0_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn0.Click
+        mstr0 = "0"
+        mstrSubtotal = mstrSubtotal + mstr0
+    End Sub
+
+    Private Sub btn00_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn00.Click
+        mstr00 = "00"
+        mstrSubtotal = mstrSubtotal + mstr00
+    End Sub
+
+    Private Sub btnDecimal_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDecimal.Click
+        mstrDecimal = "."
+        mstrSubtotal = mstrSubtotal + mstrDecimal
+
+    End Sub
+    Private Sub btn595_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn595.Click
+        mdbl595tot += mdbl595
+        mdbltot = mdbl1595tot + mdbl2095tot + mdbl595tot + mdbl2495tot + mdbl2795tot + mdbl3tot + mdbl1995tot + mdbl2295tot
+        mstrSubtotal = mdbltot.ToString
+    End Sub
+
+    Private Sub btn1595_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn1595.Click
+        mdbl1595tot += mdbl1595
+        mdbltot = mdbl1595tot + mdbl2095tot + mdbl595tot + mdbl2495tot + mdbl2795tot + mdbl3tot + mdbl1995tot + mdbl2295tot
+        mstrSubtotal = mdbltot.ToString
+    End Sub
+
+    Private Sub btn300_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn300.Click
+        mdbl3tot += mdbl3
+        mdbltot = mdbl1595tot + mdbl2095tot + mdbl595tot + mdbl2495tot + mdbl2795tot + mdbl3tot + mdbl1995tot + mdbl2295tot
+        mstrSubtotal = mdbltot.ToString
+    End Sub
+
+    Private Sub btn1995_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn1995.Click
+        mdbl1995tot += mdbl1995
+        mdbltot = mdbl1595tot + mdbl2095tot + mdbl595tot + mdbl2495tot + mdbl2795tot + mdbl3tot + mdbl1995tot + mdbl2295tot
+        mstrSubtotal = mdbltot.ToString
+    End Sub
+
+
+
+    Private Sub btn2295_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn2295.Click
+        mdbl2295tot += mdbl2295
+        mdbltot = mdbl1595tot + mdbl2095tot + mdbl595tot + mdbl2495tot + mdbl2795tot + mdbl3tot + mdbl1995tot + mdbl2295tot
+        mstrSubtotal = mdbltot.ToString
+    End Sub
+
+    Private Sub btn2495_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn2495.Click
+        mdbl2495tot += mdbl2495
+        mdbltot = mdbl1595tot + mdbl2095tot + mdbl595tot + mdbl2495tot + mdbl2795tot + mdbl3tot + mdbl1995tot + mdbl2295tot
+        mstrSubtotal = mdbltot.ToString
+    End Sub
+
+    Private Sub btn2795_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn2795.Click
+        mdbl2795tot += mdbl2795
+        mdbltot = mdbl1595tot + mdbl2095tot + mdbl595tot + mdbl2495tot + mdbl2795tot + mdbl3tot + mdbl1995tot + mdbl2295tot
+        mstrSubtotal = mdbltot.ToString
+    End Sub
+
+    Private Sub btn2095_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn2095.Click
+        mdbl2095tot += mdbl2095
+        mdbltot = mdbl1595tot + mdbl2095tot + mdbl595tot + mdbl2495tot + mdbl2795tot + mdbl3tot + mdbl1995tot + mdbl2295tot
+        mstrSubtotal = mdbltot.ToString
+    End Sub
+
+    Private Sub btnInvoice_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnInvoice.Click
+        Me.txtReciept.Text = mstrSubtotal
+        mstrSubtotal = ""
+    End Sub
+
+    Private Sub btnEnter_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEnter.Click
+        Me.txtAmt.Text = mstrSubtotal
+        mstrSubtotal = ""
+        Me.lblTax.Text = ""
+        Me.lblTotal.Text = ""
+        mdbltot = 0
+        mdbl1595tot = 0
+        mdbl2095tot = 0
+        mdbl595tot = 0
+        mdbl2495tot = 0
+        mdbl2795tot = 0
+        mdbl3tot = 0
+        mdbl1995tot = 0
+        mdbl2295tot = 0
+    End Sub
+
+
+    Private Sub cboItemType_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboItemType.SelectedIndexChanged
+        Try
+            'When an item is selected from the combobox cboItemType it clears the dataset dsItem, 
+            'which is used for the combobox cboitem, opens the daItem connection 
+            'fills the where value for the daItem command from the combobox cboItemtype
+            'creates a datareader then executes the reader and them closes the connection. 
+            'then fills the dataset dsItem fro mthe daItem
+            DsItem.Clear()
+            daItem.SelectCommand.Connection.Open()
+            daItem.SelectCommand.Parameters("itemtype").Value = ToInt32(Me.cboItemType.Text)
+            Dim rdrOrderID As OleDb.OleDbDataReader
+
+            rdrOrderID = daOrderID.SelectCommand.ExecuteReader()
+            rdrOrderID.Read()
+            daItem.SelectCommand.Connection.Close()
+
+            daItem.Fill(DsItem)
+
+        Catch sqlEX As SqlClient.SqlException
+            'This will catch sql exceptions
+            MessageBox.Show(sqlEX.Message)
+
+        Catch ex As Exception
+            'This will catch all others
+            MessageBox.Show(ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub btnSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSend.Click
+        Try
+            Dim intitemtype As Integer
+            Dim intitem As Integer
+            Dim intcount As Integer
+            If txtReciept.Text = "" Then
+                MsgBox("You must enter the receipt number located on the right hand corner of the ticket order")
+                txtReciept.Focus()
+                Exit Sub
+            End If
+            If Me.txtAmt.Text = "" Then
+                MsgBox("You must enter the price of the item to continue.")
+                txtAmt.Focus()
+                Exit Sub
+            End If
+
+            Dim dblarttotal As Double
+            If txtnotes.Text = "" Then
+                intitemtype = ToInt32(Me.cboItemType.Text)
+                intitem = ToInt32(Me.cboItem.Text)
+
+
+
+
+
+
+                Dim cnTag1 As New OleDb.OleDbConnection
+                cnTag1.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Password=;User ID=Admin;data source=c:\BAA.mdb"
+
+                Dim sqlTag1 As String = "select * from tblitem where itemtype = ? and itemid = ? "
+                Dim cmTag1 As New OleDb.OleDbCommand(sqlTag1, cnTag1)
+                cmTag1.Parameters.Add(New OleDb.OleDbParameter("itemtype", OleDb.OleDbType.Integer, 0))
+                cmTag1.Parameters.Add(New OleDb.OleDbParameter("itemid", OleDb.OleDbType.Integer, 0))
+                cmTag1.Parameters("itemtype").Value = intitemtype
+                cmTag1.Parameters("itemid").Value = intitem
+                cnTag1.Open()
+                Dim rdrtotal As OleDb.OleDbDataReader
+                rdrtotal = cmTag1.ExecuteReader()
+                Do While rdrtotal.Read()
+                    intcount = rdrtotal.Item("itemcount")
+
+                Loop
+                rdrtotal.Close()
+                cnTag1.Close()
+
+                If intcount <= 0 Then
+                    MsgBox("There is 0 items in the inventory for item " + Me.lblItemDescript.Text + " with an itemtype " + Me.cboItemType.Text + " Please check your order.")
+                    Exit Sub
+                End If
+            End If
+
+
+            If Me.txtnotes.Text = "Art Only" Then
+
+                daInsertTransaction.InsertCommand.Connection.Open()
+                daInsertTransaction.InsertCommand.Parameters("orderid").Value = ToInt32(Me.lblOrderID.Text)
+                daInsertTransaction.InsertCommand.Parameters("itemid").Value = 0
+                daInsertTransaction.InsertCommand.Parameters("itemdesc").Value = ""
+                daInsertTransaction.InsertCommand.Parameters("itemcost").Value = 0
+                daInsertTransaction.InsertCommand.Parameters("arttotal").Value = ToDouble(Me.txtAmt.Text)
+                daInsertTransaction.InsertCommand.Parameters("subTotal").Value = ToDouble(Me.txtAmt.Text)
+                daInsertTransaction.InsertCommand.Parameters("notes").Value = Me.txtnotes.Text
+                daInsertTransaction.InsertCommand.ExecuteNonQuery()
+                daInsertTransaction.InsertCommand.Connection.Close()
+
+            ElseIf Me.txtnotes.Text <> "Art Only" Then
+
+                Dim dblamt As Double = ToDouble(Me.txtAmt.Text)
+                Dim dblitemamt As Double = ToDouble(Me.txtItemAmt.Text)
+                dblarttotal = dblamt - dblitemamt
+
+
+                daInsertTransaction.InsertCommand.Connection.Open()
+                daInsertTransaction.InsertCommand.Parameters("orderid").Value = ToInt32(Me.lblOrderID.Text)
+                daInsertTransaction.InsertCommand.Parameters("itemid").Value = ToInt32(Me.cboItem.Text)
+                daInsertTransaction.InsertCommand.Parameters("itemdesc").Value = Me.lblItemDescript.Text
+                daInsertTransaction.InsertCommand.Parameters("itemcost").Value = ToDouble(Me.txtItemAmt.Text)
+                daInsertTransaction.InsertCommand.Parameters("arttotal").Value = dblarttotal
+                daInsertTransaction.InsertCommand.Parameters("subTotal").Value = ToDouble(Me.txtAmt.Text)
+                daInsertTransaction.InsertCommand.Parameters("notes").Value = ""
+                daInsertTransaction.InsertCommand.ExecuteNonQuery()
+                daInsertTransaction.InsertCommand.Connection.Close()
+            End If
+
+
+
+
+
+            Call GetTransactions()
+
+            Call GetTotals()
+
+
+
+
+        Catch sqlEX As SqlClient.SqlException
+            'This will catch sql exceptions
+            MessageBox.Show(sqlEX.Message)
+
+        Catch ex As Exception
+            'This will catch all others
+            MessageBox.Show(ex.Message)
+        End Try
+
+
+    End Sub
+    Private Sub GetTotals()
+
+        Dim dblsubtotal As Double
+        Dim dbltax As Double
+        Dim intcount As Integer = 0
+        Me.daTransactions.SelectCommand.Connection.Open()
+        daTransactions.SelectCommand.Parameters("orderid").Value = ToInt32(Me.lblOrderID.Text)
+        Dim rdrtotal As OleDb.OleDbDataReader
+        rdrtotal = daTransactions.SelectCommand.ExecuteReader()
+        Do While rdrtotal.Read()
+            intcount += 1
+
+        Loop
+        rdrtotal.Close()
+        daTransactions.SelectCommand.Connection.Close()
+        If intcount > 0 Then
+            daTotals.SelectCommand.Connection.Open()
+            daTotals.SelectCommand.Parameters("orderid").Value = ToInt32(Me.lblOrderID.Text)
+            Dim rdrtotals As OleDb.OleDbDataReader
+            rdrtotals = daTotals.SelectCommand.ExecuteReader()
+            Do While rdrtotals.Read()
+                dblsubtotal = rdrtotals.Item("stot")
+                mdblarttotal = rdrtotals.Item("art")
+            Loop
+            rdrtotals.Close()
+            daTotals.SelectCommand.Connection.Close()
+            daTax.SelectCommand.Connection.Open()
+            Dim rdrtax As OleDb.OleDbDataReader
+            rdrtax = daTax.SelectCommand.ExecuteReader
+
+            Do While rdrtax.Read
+                dbltax = rdrtax.Item("statetax")
+            Loop
+            rdrtax.Close()
+            daTax.SelectCommand.Connection.Close()
+
+            dbltax = dbltax * dblsubtotal
+            dbltax = Math.Round(dbltax, 2)
+
+            Me.lblSubtotal.Text = dblsubtotal
+            Me.lblTax.Text = dbltax
+            Me.lblTotal.Text = dblsubtotal + dbltax
+        End If
+
+
+
+    End Sub
+
+    Private Sub btnClear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClear.Click
+        Try
+           
+            
+
+            Dim cnShirt As New OleDb.OleDbConnection
+            cnShirt.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Password=;User ID=Admin;data source=c:\BAA.mdb"
+            Dim sqlShirt As String = "Delete * from TBLTRAN where orderID = ?"
+            Dim cmShirt As New OleDb.OleDbCommand(sqlShirt, cnShirt)
+            cmShirt.Parameters.Add(New OleDb.OleDbParameter("orderid", OleDb.OleDbType.Integer, 0))
+            cmShirt.Parameters("orderid").Value = ToInt32(lblOrderID.Text)
+            cnShirt.Open()
+            cmShirt.ExecuteNonQuery()
+            cnShirt.Close()
+
+            Call ClearOrder()
+            Call GetTransactions()
+
+        Catch sqlEX As SqlClient.SqlException
+            'This will catch sql exceptions
+            MessageBox.Show(sqlEX.Message)
+
+        Catch ex As Exception
+            'This will catch all others
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+
+    Private Sub btnArtOnly_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnArtOnly.Click
+
+        If mblnNotes = True Then
+            Me.txtnotes.Text = "Art Only"
+
+            Call notes()
+        Else
+            Me.txtnotes.Text = ""
+            mblnNotes = True
+
+        End If
+
+
+    End Sub
+    Private Sub notes()
+        mblnNotes = False
+    End Sub
+
+    Private Sub btnSubtotal_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSubtotal.Click
+        If mstrSubtotal <> "" Then
+            Me.txtAmtGiven.Text = mstrSubtotal
+        End If
+        If Me.txtAmtGiven.Text = "" Then
+            Me.lblChange.Text = ""
+        Else
+            lblChange.Text = Math.Round((ToDouble(lblTotal.Text) - ToDouble(txtAmtGiven.Text)) * -1, 2)
+
+        End If
+        If lblChange.Text = "" Then
+        Else
+            If ToDouble(lblChange.Text) < 0 Then
+                lblChange.ForeColor = ForeColor.Red
+            Else
+                lblChange.ForeColor = ForeColor.Black
+
+            End If
+        End If
+        mstrSubtotal = ""
+    End Sub
+    Private Sub INVENTORYUPDATE()
+        Try
+            Dim intItemID As Integer
+            Dim strdescr As String
+            Dim intCount As Integer
+            Dim intC As Integer
+            Dim inttran As Integer
+            Dim intt As Integer
+            Dim cnCount As New OleDb.OleDbConnection
+            cnCount.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Password=;User ID=Admin;data source=c:\BAA.mdb"
+            Dim sqlCount As String = "Select * from tbltran where orderid = ?"
+            Dim cmCount As New OleDb.OleDbCommand(sqlCount, cnCount)
+            cmCount.Parameters.Add(New OleDb.OleDbParameter("orderid", OleDb.OleDbType.Integer, 0))
+            cmCount.Parameters("orderid").Value = ToInt32(Me.lblOrderID.Text)
+            cnCount.Open()
+            Dim rdrCount As OleDb.OleDbDataReader
+            rdrCount = cmCount.ExecuteReader
+            Do While rdrCount.Read
+                intCount += 1
+
+            Loop
+            rdrCount.Close()
+            cnCount.Close()
+            intCount -= 1
+            inttran = intCount
+            ReDim Preserve intTranid(inttran)
+
+            cnCount.Open()
+
+            rdrCount = cmCount.ExecuteReader
+            Do While rdrCount.Read
+                intTranid(intC) = rdrCount.Item("tranid")
+
+                intC += 1
+
+            Loop
+            rdrCount.Close()
+            cnCount.Close()
+            For intC = 0 To intCount
+
+
+                Dim cnShirt As New OleDb.OleDbConnection
+                cnShirt.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Password=;User ID=Admin;data source=c:\BAA.mdb"
+                Dim sqlShirt As String = "Select * from tbltran where orderid = ? and tranid = ?"
+                Dim cmShirt As New OleDb.OleDbCommand(sqlShirt, cnShirt)
+                cmShirt.Parameters.Add(New OleDb.OleDbParameter("orderid", OleDb.OleDbType.Integer, 0))
+                cmShirt.Parameters.Add(New OleDb.OleDbParameter("tranid", OleDb.OleDbType.Integer, 0))
+                cmShirt.Parameters("tranid").Value = intTranid(intC)
+                cmShirt.Parameters("orderid").Value = ToInt32(Me.lblOrderID.Text)
+                cnShirt.Open()
+                Dim rdrShirt As OleDb.OleDbDataReader
+                rdrShirt = cmShirt.ExecuteReader
+                Do While rdrShirt.Read
+                    intItemID = rdrShirt.Item("itemid")
+                    strdescr = rdrShirt.Item("itemdesc")
+
+                Loop
+                rdrShirt.Close()
+
+
+                cnShirt.Close()
+                Dim cnTag1 As New OleDb.OleDbConnection
+                cnTag1.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Password=;User ID=Admin;data source=c:\BAA.mdb"
+
+                Dim sqlTag1 As String = "Update tblitem set itemcount = itemcount - 1 where itemid = ? "
+                Dim cmTag1 As New OleDb.OleDbCommand(sqlTag1, cnTag1)
+                cmTag1.Parameters.Add(New OleDb.OleDbParameter("itemid", OleDb.OleDbType.Integer, 0))
+                cmTag1.Parameters("itemid").Value = intItemID
+                cnTag1.Open()
+                cmTag1.ExecuteNonQuery()
+
+                cnTag1.Close()
+
+                Me.DsItem.Clear()
+                Me.daItem.Fill(DsItem)
+
+            Next
+        Catch sqlEX As SqlClient.SqlException
+            'This will catch sql exceptions
+            MessageBox.Show(sqlEX.Message)
+
+        Catch ex As Exception
+            'This will catch all others
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+    Private Sub btnOrderComplete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOrderComplete.Click
+        Try
+            If txtnotes.Text = "" Then
+                Call INVENTORYUPDATE()
+            End If
+
+            Dim strretailloc As String = Me.lblRetailStore.Text
+            Dim intRSid As Integer
+
+
+            Dim strOrderID As String
+            Dim strRetail As String
+            Dim INTORDERID As Integer = ToInt32(lblOrderID.Text)
+            Dim intinvoice As Integer = ToInt32(Me.txtReciept.Text)
+            Dim strArtist As String
+            If cboArtist.Visible = True Then
+                strArtist = cboArtist.Text
+            Else
+                strArtist = "Unknown"
+            End If
+
+
+
+            daInsertOrder.InsertCommand.Connection.Open()
+            daInsertOrder.InsertCommand.Parameters("orderid").Value = ToInt32(Me.lblOrderID.Text)
+            daInsertOrder.InsertCommand.Parameters("invoiceid").Value = ToInt32(Me.txtReciept.Text)
+            daInsertOrder.InsertCommand.Parameters("storeid").Value = ToInt32(Mid(Me.lblOrderID.Text, 1, 1))
+            daInsertOrder.InsertCommand.Parameters("Artist").Value = strArtist
+            daInsertOrder.InsertCommand.Parameters("SubTotal").Value = ToDouble(Me.lblSubtotal.Text)
+            daInsertOrder.InsertCommand.Parameters("arttotal").Value = mdblarttotal
+            daInsertOrder.InsertCommand.Parameters("Tax").Value = ToDouble(Me.lblTax.Text)
+            daInsertOrder.InsertCommand.Parameters("Total").Value = ToDouble(Me.lblTotal.Text)
+            daInsertOrder.InsertCommand.Parameters("trandate").Value = Me.dtdate.Text
+            daInsertOrder.InsertCommand.Parameters("sales").Value = Me.cboSales.Text
+
+            daInsertOrder.InsertCommand.ExecuteNonQuery()
+            daInsertOrder.InsertCommand.Connection.Close()
+
+
+
+            Dim sqlShirt As String = "Select * from TBLRETAIL where RETAILNAME = ?"
+            Dim cmShirt As New OleDb.OleDbCommand(sqlShirt, cnBAA)
+            cmShirt.Parameters.Add(New OleDb.OleDbParameter("RETAILNAME", OleDb.OleDbType.VarChar, 50))
+            cmShirt.Parameters("RETAILNAME").Value = strretailloc
+            cnBAA.Open()
+            Dim rdrShirt As OleDb.OleDbDataReader
+            rdrShirt = cmShirt.ExecuteReader
+            Do While rdrShirt.Read
+                intRSid = rdrShirt.Item("retailid")
+
+            Loop
+            rdrShirt.Close()
+            cnBAA.Close()
+
+            daOrderID.SelectCommand.Connection.Open()
+            daOrderID.SelectCommand.Parameters("storeid").Value = intRSid
+            Dim rdrOrderID As OleDb.OleDbDataReader
+
+            rdrOrderID = daOrderID.SelectCommand.ExecuteReader()
+            rdrOrderID.Read()
+
+            INTORDERID = rdrOrderID.Item("LastID")
+            strOrderID = INTORDERID.ToString
+            strRetail = Mid(strOrderID, 1, 1)
+            strOrderID = Mid(strOrderID, 2)
+            INTORDERID = ToInt32(strOrderID)
+            INTORDERID += 1
+            strOrderID = strRetail + INTORDERID.ToString
+            lblOrderID.Text = strOrderID
+            rdrOrderID.Close()
+            daOrderID.SelectCommand.Connection.Close()
+
+            DsTransactions.Clear()
+
+
+            Call ClearOrder()
+
+
+        Catch sqlEX As SqlClient.SqlException
+            'This will catch sql exceptions
+            MessageBox.Show(sqlEX.Message)
+
+        Catch ex As Exception
+            'This will catch all others
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+    Private Sub ClearOrder()
+        txtnotes.Text = ""
+        txtAmt.Text = ""
+        txtReciept.Text = ""
+        lblSubtotal.Text = ""
+        lblTax.Text = ""
+        lblTotal.Text = ""
+        mdblarttotal = 0
+        txtAmtGiven.Text = ""
+        lblChange.Text = ""
+
+
+    End Sub
+
+
+
+
+
+
+
+
+
+
+    
+   
+End Class
